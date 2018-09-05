@@ -152,3 +152,42 @@ __END__
 `__END__`移行の行データはDATAという定数にFILEオブジェクトとして保持され、実行時に参照できる。
 
 ただし、`__END__`がなければ定数DATAは定義できない。
+
+
+## 例外処理
+ある場所で例外が発生した時、例外はコールスタックを遡り、最終的にはトップレベルまで伝搬する。
+
+`begin~rescue`で例外を補足する。
+
+
+```
+begin
+  do_process  #例外が発生する可能性のある何らかの処理
+rescue => e
+  puts "Error occurred (#{e.class})"
+  puts e.message
+  puts e.backtrace
+end
+```
+rescue節は複数記述することができ、例外が最初にマッチしたrescue節で捕捉される。
+
+また、*ひとつのrescue節で複数の例外クラスを指定する*こともできる。
+
+下記の用に例外の有無にかかわらず、最後に実行したい処理は`ensure`節に記述する。
+
+```
+begin
+  file = File.open('test.txt')
+
+  do_process file
+rescue
+  puts 'なにかがおきたよ！'
+ensure
+  file.close if file
+end
+```
+例えば、ファイル操作に失敗した場合でも確実にファイルをクローズしたいときに上記の用にする。
+
+`ensure`でなく`else`を使うと、例外が発生しなかった場合だけ行う処理を記述できる。
+
+### 例外処理の戻り値
