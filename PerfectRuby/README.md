@@ -210,4 +210,23 @@ Hello # => NameError
 Hello() # => ちゃんと動く
 ```
 
-## 戻り値
+## 配列の展開
+
+メソッドの呼び出しで実引数の頭に＊をつけると、１つの配列を複数の引数として渡せる。
+
+```
+def greet_twice(name, first_message, second_message)
+  puts "#{first_message}, #{name}."
+  puts "#{second_message}, #{name}."
+end
+
+greeting = %w(Hello Hola)
+
+greet_twice 'Ruby', *greeting
+```
+
+greet_twiceメソッドは引数を３つとるが、呼び出し時には2つの変数しか渡していないことに注意。
+
+配列greetingが＊によって複数の引数として展開される。
+
+
