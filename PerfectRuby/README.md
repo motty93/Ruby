@@ -251,3 +251,68 @@ end
 yieldを呼び出すメソッドをブロック無しで呼び出すと、`LocalJumpError`という例外が発生する。
 
 yieldを呼び出せるのはブロックが与えられている時だけ。
+
+### 仮引数としてブロックを受け取る
+
+```
+def block_sample(&block)
+  puts 'stand up'
+
+  block.call if block
+
+  puts 'sit down'
+end
+
+block_sample do
+  puts 'walk'
+end
+```
+
+仮引数の先頭に&をつけることで、メソッドに渡されたブロックを仮引数として受け取ることができる。
+
+&を使った仮引数は、１つのメソッドに１つのみ指定できる。
+
+
+### オブジェクトをブロックとして渡す
+
+```
+people = %w(alice bob charlie)
+block = Proc.new { |name| puts name }
+
+people.each &block
+```
+
+&を使って引数を渡す方法はProcオブジェクト以外にも使える。
+
+```
+p1 = Proc.new { |val| val.upcase }
+p2 = :upcase.to_proc
+
+p1.call('hi')
+p2.call('hi')
+```
+
+`map`を使うともっと綺麗な形へと進化する。
+
+```
+people = %w(alice bob charlie)
+people.map(&:upcase)
+```
+
+これが `Symbol#to_proc`を用いた処理。結構使う。
+
+### 繰り返し以外に用いられるブロック
+
+* ファイルのオープン・クローズ
+* DBへの接続・切断
+* トランザクションの開始・終了
+* ロックと解放
+
+
+### ブロックの記法
+
+* ブロックの中が一行に収まる場合は`{...}`をつかう。複数行になる場合は`do...end`を使う
+* ブロックを、値を返す式として書く場合は`{...}`を使い、手続きを実行する文として書く場合は`do...end`を使う。
+
+
+## キーワード引数
