@@ -230,3 +230,24 @@ greet_twiceメソッドは引数を３つとるが、呼び出し時には2つ�
 配列greetingが＊によって複数の引数として展開される。
 
 
+## ブロック
+### yield
+
+ブロックを引数に取ることができる。
+
+```
+def block_sample
+  puts 'stand up'
+  yield
+  puts 'sit down'
+end
+
+block_sample do
+  puts 'walk'
+end
+```
+`block_sample`メソッドの中で`yield`が呼び出されると、メソッド呼び出し時に渡したブロックが実行される。
+
+yieldを呼び出すメソッドをブロック無しで呼び出すと、`LocalJumpError`という例外が発生する。
+
+yieldを呼び出せるのはブロックが与えられている時だけ。
