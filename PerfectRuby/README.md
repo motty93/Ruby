@@ -377,3 +377,12 @@ undef puts
 
 greet 'jooooooooo'
 ```
+
+## 文字列の入出力
+
+`puts/print/printf`は受け取っら引数が文字列でない場合、`to_s`メソッドの戻り地を出力する。
+
+また、`Kernel.#p`は`inspect`メソッドの戻り地を出力する。
+
+inspectメソッド  
+https://ref.xaio.jp/ruby/classes/hash/inspect
