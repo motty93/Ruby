@@ -384,5 +384,25 @@ greet 'jooooooooo'
 
 また、`Kernel.#p`は`inspect`メソッドの戻り地を出力する。
 
-inspectメソッド  
+inspectメソッド
 https://ref.xaio.jp/ruby/classes/hash/inspect
+
+## 外部コマンドの実行
+
+`system/exec/spawn`メソッドには、第一引数にハッシュを指定でき、外部コマンドのプロセスの環境変数を上書きしたり追加したりできる。
+
+```
+ENV['HOGE'] = 'huga'
+
+system('echo $HOGE')
+
+system({'HOGE' => 'piyo'}, 'echo $HOGE')
+
+pid = spawn({'HOGE' => 'piyo'}, 'echo $HOGE')
+
+Process.waitpid pid
+
+exec({'HOGE' => 'piyo'}, 'echo $HOGE')
+```
+
+```
