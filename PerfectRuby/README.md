@@ -405,4 +405,31 @@ Process.waitpid pid
 exec({'HOGE' => 'piyo'}, 'echo $HOGE')
 ```
 
+## インスタンスメソッド
+
 ```
+class Brownie
+  def initialize
+    @baked = false
+  end
+
+  def bake!
+    @baked = true
+
+    self
+  end
+
+  def baked?
+    @baked
+  end
+end
+
+b = Brownie.new
+p b.baked?
+p b.bake!
+p b.baked?
+```
+
+* オブジェクトの状態を真偽値で返すメソッドには疑問符を用いて定義する。
+* 同じ処理をする２つのメソッドがあるとこい、プログラマに対してより注意を促したいメソッドの名前には感嘆符をつける。
+* 処理に失敗した際に偽を返すメソッドと例外を発生されるメソッドがある場合、例外を発生させる方のメソッドには感嘆符をつける。(ActiveRecordのsave!メソッドとか)
