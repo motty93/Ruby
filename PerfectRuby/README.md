@@ -433,3 +433,52 @@ p b.baked?
 * オブジェクトの状態を真偽値で返すメソッドには疑問符を用いて定義する。
 * 同じ処理をする２つのメソッドがあるとこい、プログラマに対してより注意を促したいメソッドの名前には感嘆符をつける。
 * 処理に失敗した際に偽を返すメソッドと例外を発生されるメソッドがある場合、例外を発生させる方のメソッドには感嘆符をつける。(ActiveRecordのsave!メソッドとか)
+
+## クラスの継承
+
+継承するクラスは、 `class SubClass < SuperClass`のように`<`を用いて指定する。
+
+サブクラスはスーパークラスのインスタンスメソッド、クラスメソッドを継承する。ただし、サブクラスはインスタンス変数についての情報は継承しない。
+
+サブクラスからはスーパークラスの定数を参照できる。
+
+```
+class Parent
+  PARENT = 'constant in parent'
+end
+
+class Child < Parent
+end
+
+p Child.constants   # => Childクラスの定数一覧
+p Child::PARENT
+```
+
+## メソッドのオーバーライド
+
+```
+class Parent
+  def greet
+    puts 'hi'
+  end
+end
+
+class Child < Parent
+  def greet(name)
+    puts "hi, #{name}"
+  end
+end
+
+class GrandChild < Child
+  def greet(name)
+    super
+
+    puts 'Nice'
+  end
+end
+
+grandchild = GrandChild.new
+grandchild.greet 'ruby'
+```
+
+サブクラスで受け取った引数とは別の値を渡したい場合には、superに引数を渡す。引数を一切渡したくない場合は、`super()`と括弧を記述して引数がないことを明示する。
