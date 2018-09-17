@@ -6,7 +6,7 @@ class Ruler
   end
 
   def self.pair(first, second)
-    [Ruler.new(first), self.new(second)]
+    [Ruler.new(first), new(first), self.new(second)]
   end
 end
 
