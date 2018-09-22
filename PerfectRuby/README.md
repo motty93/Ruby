@@ -482,3 +482,35 @@ grandchild.greet 'ruby'
 ```
 
 サブクラスで受け取った引数とは別の値を渡したい場合には、superに引数を渡す。引数を一切渡したくない場合は、`super()`と括弧を記述して引数がないことを明示する。
+
+## クラス変数とそのスコープ
+
+クラス変数は、そのクラスとサブクラスのクラス定義の中や、クラスメソッド、インスタンスメソッドで共有することができる変数のこと。
+
+```
+class Parent
+  @@val = 'foo'
+
+  def self.say
+    puts @@val
+  end
+end
+
+class Child < Parent
+  def say
+    @@val = 'hoge'
+    puts @@val
+  end
+
+  def hoge
+    puts @@val
+  end
+end
+
+Parent.say
+Child.say
+Child.new.say
+Child.new.hoge
+```
+
+クラス変数はそのクラスとサブクラス以外からは参照できない。
