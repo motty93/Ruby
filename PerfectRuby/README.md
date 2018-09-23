@@ -514,3 +514,49 @@ Child.new.hoge
 ```
 
 クラス変数はそのクラスとサブクラス以外からは参照できない。
+
+## ネストした定数の参照
+
+トップレベルに定義された定数とクラスに定義された定数がそれぞれあるとする。
+
+このときクラスから定数を参照すると`クラス::定数`の値が返る。
+
+```
+VALUE = 'toplevel'.freeze
+
+class Foo
+  VALUE = 'in Foo class'
+
+  def self.value
+    VALUE
+  end
+end
+
+Foo.value
+# => 'in Foo class'
+```
+
+ネストしたクラス・モジュール内で定数を参照した際には、まずそのクラス・モジュールに定数があれば選ばれ、なければネストがより低い位置の定数が探索される。
+
+上記の例で`Foo::VALUE`が定義されていなければ、`Foo.value`はトップレベルのVALUEが持つ値を返す。
+
+定数探索は自身からトップレベル方向に進み、最初に見つかった定数が参照される。
+
+クラス定義・モジュール定義がネストしている場合は、トップレベルに比べて自身に近い定数が参照される。
+
+```
+VALUE = 'toplevel'.freeze
+
+class Foo
+  #VALUE = 'in Foo class'
+
+  class Bar
+    def self.value
+      VALUE
+    end
+  end
+end
+
+Foo::Bar.value
+# => in Foo class
+```
