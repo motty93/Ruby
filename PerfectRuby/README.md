@@ -544,7 +544,7 @@ Foo.value
 
 クラス定義・モジュール定義がネストしている場合は、トップレベルに比べて自身に近い定数が参照される。
 
-```
+```rb
 VALUE = 'toplevel'.freeze
 
 class Foo
@@ -574,3 +574,21 @@ Foo::Bar.value
 * 特異メソッドやモジュール関数を定義して使う
 
 
+## クラスやモジュールを自動的にロード
+
+めったに使わない機能が必要としている巨大なライブラリを毎回requireするのは避けたい。毎回必ずロードするとは限らない外部ファイルの読み込みには、`autoload`を用いる。
+
+```rb
+autoload :MySweets, 'my_library/my_sweets'
+
+MySweets " ここでrequireされる
+```
+
+autoloadを呼び出しても、参照されない限りrequireによるライブラリ読み込みは行われない。必要になった時初めてrequireされる。
+
+```rb
+module MySweets
+  autoload :Cake, 'my_library/my_sweets/cake'
+end
+
+MySweets::Cake # ここでrequireされる
