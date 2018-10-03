@@ -17,3 +17,24 @@
 ```
 
 `rounding.rb`参照
+
+### Integer
+
+整数への変換
+
+```
+'123'.to_i
+Time.now.to_i
+```
+
+または`Kernel.#Integer`を用いる方法もある。
+
+```
+Integer('4423') # => 4423
+Integer('3.14') # => 3
+Integer('abc') # ArgumentError
+Integer(nil) # TypeError
+```
+
+`to_i`と違って *例外を発生させる* ことができる。
+
