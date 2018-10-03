@@ -38,3 +38,17 @@ Integer(nil) # TypeError
 
 `to_i`と違って *例外を発生させる* ことができる。
 
+## String
+
+### 部分文字列の取得
+
+```
+str = 'asdf hello world 50'
+
+str.slice(4) # => 位置を指定
+str.slice(4, 6) # => 開始位置と取得文字数
+str.slice(4..9) # => 文字列の範囲
+str.slice(/[0-9]+/)  # => 正規表現で指定
+```
+
+かわりに`String#[]`を用いることもできる。
