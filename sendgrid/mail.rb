@@ -4,9 +4,9 @@ include SendGrid
 
 # .envの読み込み
 Dotenv.load
-from = Email.new(email: 'rdwbocungelt5@gmail.com')
+from = Email.new(email: ENV['MAIL_FROM'])
 subject = 'testです'
-to = Email.new(email: 't-sasamoto@hideandseek.co.jp')
+to = Email.new(email: ENV['MAIL_TO'])
 content = Content.new(type: 'text/plain', value: 'Hello, Email')
 mail = Mail.new(from, subject, to, content)
 
