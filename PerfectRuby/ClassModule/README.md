@@ -1,4 +1,36 @@
 # 主な組み込みクラス・モジュール
+## クラスメソッドとインスタンスメソッド
+
+```
+module Person
+  class Child
+    def self.hello
+      puts 'hello'
+      ok
+    end
+
+    def ok
+      puts 'ok'
+      hello
+    end
+  end
+end
+
+child = Person::Child.new
+child.ok
+
+Person::Child.hello
+# hello
+# Traceback (most recent call last):
+# from class_methods.rb:14:in `<main>'
+# class_methods.rb:5:in `hello': undefined local variable or method `ok' for Person::Child:Class (NameError)
+
+# インスタンスメソッドはクラスオブジェクトからは呼び出せない。
+
+```
+
+クラスメソッドはインスタンスオブジェクトからは呼び出せない。
+
 ## Numeric
 
 ### 丸め操作
@@ -66,3 +98,23 @@ str.slice(/[0-9]+/)  # => 正規表現で指定
 `String#gsub`はマッチする文字列全てを置換する。
 
 上記２つは、第二引数の代わりにブロックを渡せる。
+
+## Regexp
+
+### パターンマッチ
+
+`Regexp#=~`はマッチした位置を返す。マッチしなければnilを返す。
+
+`true`か`false`を期待している場合は`Regexp#===`を使う。
+
+```rb
+def alice?(pattern)
+  pattern === 'alice'
+end
+
+alice?(/Alice/i) # => true
+alice?('alice') # => true
+
+```
+
+
