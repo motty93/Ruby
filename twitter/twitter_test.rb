@@ -10,4 +10,9 @@ Dotenv.load
   config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
-@client.update('tweetテストだよ by Rubyから')
+#@client.update('tweetテストだよ by Rubyから')
+p @client.user.to_hash
+
+puts '\n'
+
+p @client.methods
