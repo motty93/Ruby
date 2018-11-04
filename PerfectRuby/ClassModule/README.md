@@ -1,7 +1,7 @@
 # 主な組み込みクラス・モジュール
 ## クラスメソッドとインスタンスメソッド
 
-```
+```rb
 module Person
   class Child
     def self.hello
@@ -40,7 +40,7 @@ Person::Child.hello
 * round: 自身に近い整数に丸める（単純な四捨五入に使う）
 * truncate: 自身と０との間で、自身に最も近い整数を返す(ガウスの整数)
 
-```
+```rb
 2.4.round
 2.5.round
 2.5.round(half: :even)
@@ -61,7 +61,7 @@ Time.now.to_i
 
 または`Kernel.#Integer`を用いる方法もある。
 
-```
+```rb
 Integer('4423') # => 4423
 Integer('3.14') # => 3
 Integer('abc') # ArgumentError
@@ -74,7 +74,7 @@ Integer(nil) # TypeError
 
 ### 部分文字列の取得
 
-```
+```rb
 str = 'asdf hello world 50'
 
 str.slice(4) # => 位置を指定
@@ -89,7 +89,7 @@ str.slice(/[0-9]+/)  # => 正規表現で指定
 
 `String#squeeze`を使うと、文字列の中で同じ文字が連続している場合に１つにまとめることができる。
 
-```
+```rb
 'woooooooo'.squeeze # => 'wo'
 'aabbccdd'.squeeze('abc') # => 'abcdd'
 ```
