@@ -117,4 +117,28 @@ alice?('alice') # => true
 
 ```
 
+MatchDataは組み込み変数からも取得できる。
+
+|MatchData|変数|得られる値|
+|:--:|:--:|:--:|
+|MatchData#[0]|$1|マッチした文字列全体|
+|MatchData#[1]|$1|正規表現の一番目の括弧にマッチした文字列|
+|MatchData#pre_match|$`|マッチした文字列より前の文字列|
+|MatchData#post_match|$'|マッチした文字列より後の文字列|
+|MatchData#captures||正規表現の中の括弧にマッチした文字列の配列|
+|MatchData#named_captures||正規表現の中の、ラベル付き括弧にマッチした文字列のHashオブジェクト|
+
+```rb
+Regexp.last_match
+
+/ruby/.match('ruby5')
+Regexp.last_match
+
+/\d/.match?('ruby5')
+'ruby5'.match?(/\d/)
+:ruby5.match?(/\d/)
+Regexp.last_match
+```
+
+
 
