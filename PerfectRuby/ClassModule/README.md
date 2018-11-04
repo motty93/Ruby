@@ -120,7 +120,7 @@ alice?('alice') # => true
 MatchDataは組み込み変数からも取得できる。
 
 |MatchData|変数|得られる値|
-|:--:|:--:|:--:|
+|:--|:--|:--|
 |MatchData#[0]|$1|マッチした文字列全体|
 |MatchData#[1]|$1|正規表現の一番目の括弧にマッチした文字列|
 |MatchData#pre_match|$`|マッチした文字列より前の文字列|
