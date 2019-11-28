@@ -8,4 +8,4 @@ class Foo
   end
 end
 
-Foo.value
+puts Foo.value

@@ -9,6 +9,5 @@ module Sweet
 end
 
 puts Sweet.lot
-puts Sweet.lot
 p Sweet::Chocolate
 p Sweet::Brownie

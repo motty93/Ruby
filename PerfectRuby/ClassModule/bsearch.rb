@@ -11,5 +11,6 @@ p ary.bsearch { |n| n > 6 }
 # 以下の結果が謎
 p ary.bsearch { |n| n <= 4 }
 
+# orderされたデータでないとbsearchは動かない
 # 正しい結果が得られない
 p [2, 3, 1, 5].sort.bsearch { |n| n < 3 }

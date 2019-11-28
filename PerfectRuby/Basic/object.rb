@@ -10,7 +10,7 @@ puts o.frozen?
 # 自身のブロック引数に対してブロックを実行し、自身を返す
 o.tap { |v| puts v }
 
-Object.new == Object.new
-[1, 2] == [1, 2]
-/pattern/ == /pattern/
-'Alice' == 'Alice'
+puts Object.new == Object.new
+puts [1, 2] == [1, 2]
+puts /pattern/ == /pattern/
+puts 'Alice' == 'Alice'
