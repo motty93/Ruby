@@ -9,4 +9,4 @@ person0&.capitalize
 person0.capitalize
 
 person9&.capitalize   # nil
-person9.capitalize  #NoMethoeErrorになる
+person9.capitalize  #NoMethodErrorになる
