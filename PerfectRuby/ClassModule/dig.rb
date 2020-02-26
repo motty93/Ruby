@@ -10,5 +10,5 @@ hash.dig(:alice, :books, :wonder) #=> nil
 
 
 hash = { a: [{ word: 'alice' }, { word: 'alpha' }] }
-hash.dif(:a, 0, :word) #=> 'alice'
+hash.dig(:a, 0, :word) #=> 'alice'
 
