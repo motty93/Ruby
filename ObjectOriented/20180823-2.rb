@@ -1,4 +1,4 @@
-class ObscuringReferences
+class RevealingReferences
   attr_reader :data
 
   def initialize(data)
@@ -6,11 +6,13 @@ class ObscuringReferences
   end
 
   def diameteres
-    wheels.collect do |wheel|
-      wheel.rim + (wheel.tire * 2)
-    end
+    wheels.collect { |wheel| diameter(wheel) }
   end
   # これでだれでもwheelにrim/tireを送れる
+
+  def diameter(wheel)
+    wheel.rim + (wheel.tire * 2)
+  end
 
   Wheel = Struct.new(:rim, :tire)
   def wheelify(data)
@@ -20,4 +22,3 @@ class ObscuringReferences
   end
 end
 
-puts ObscuringReferences.new([[622,20], [622,23], [559,30]]).diameteres
