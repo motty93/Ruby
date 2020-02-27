@@ -3,7 +3,7 @@ class Gear
 
   def initialize(args)
     @chainring = args[:chainring] || 40
-    @cog       = args[:cog] || 18
+    @cog       = args.fetch(:cog, 18) # fetchでもデフォルト値設定可能
     @wheel     = args[:wheel]
   end
 
