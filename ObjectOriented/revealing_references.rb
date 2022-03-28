@@ -6,14 +6,14 @@ class RevealingReferences
   end
 
   def diameteres
-    wheels.collect do |wheel|
+    wheels.map do |wheel|
       wheel.rim + (wheel.tire * 2)
     end
   end
 
   Wheel = Struct.new(:rim, :tire)
   def wheelify(data)
-    data.collect do |cell|
+    data.map do |cell|
       Wheel.new(cell[0], cell[1])
     end
   end
