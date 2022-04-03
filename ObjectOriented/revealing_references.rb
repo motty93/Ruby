@@ -6,9 +6,11 @@ class RevealingReferences
   end
 
   def diameteres
-    wheels.map do |wheel|
-      wheel.rim + (wheel.tire * 2)
-    end
+    wheels.map { |wheel| diameter(wheel) }
+  end
+
+  def gear_inches(ratio, wheel)
+    ratio * diameter(wheel)
   end
 
   Wheel = Struct.new(:rim, :tire)
@@ -16,6 +18,12 @@ class RevealingReferences
     data.map do |cell|
       Wheel.new(cell[0], cell[1])
     end
+  end
+
+  private
+
+  def diameter(wheel)
+    wheel.rim + (wheel.tire * 2)
   end
 end
 
