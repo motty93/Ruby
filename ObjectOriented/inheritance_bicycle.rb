@@ -3,7 +3,7 @@ class Bicycle
 
   def initialize(args)
     @size = args[:size]
-    @tape_color = args[:tape_color]
+    @tape_color = args[:tape_color] || 'blue'
   end
 
   def spares
@@ -17,4 +17,4 @@ end
 
 bike = Bicycle.new(size: 'M', tape_color: 'red')
 puts bike.size
-puts bike.spares
+puts bike.spare
